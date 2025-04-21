@@ -8,22 +8,40 @@
   "wordpress": {
     "sitesConfigPath": "./config/wp-sites.json",
     "secretsPath": "./config/wp-secrets.json",
+    "secretsSource": "file",
     "apiTimeout": 10000
   },
   "security": {
     "rateLimit": {
       "windowMs": 60000,
       "max": 100,
-      "standardHeaders": true
+      "standardHeaders": true,
+      "ipBasedLimiting": true
     },
     "apiKeys": {
-      "source": "file",
-      "path": "./config/api-keys.json"
+      "source": "env",
+      "path": "./config/api-keys.json",
+      "rotationPeriodDays": 90
     },
     "cors": {
       "origin": "*",
       "methods": ["GET", "POST"],
       "allowedHeaders": ["Content-Type", "X-API-Key", "X-MCP-Key"]
+    },
+    "https": {
+      "required": false,
+      "developmentExempt": true
+    },
+    "passwords": {
+      "minLength": 12,
+      "requireSpecialChar": true,
+      "requireNumber": true,
+      "requireUpperLower": true
+    },
+    "audit": {
+      "enabled": true,
+      "level": "info",
+      "logPath": "./logs/audit.log"
     }
   },
   "logging": {

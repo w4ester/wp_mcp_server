@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+coverage/
+
+# Environment and credentials
+.env
+.env.*
+!.env.example
+config/api-keys.json
+config/wp-secrets.json
+config/*.local.json
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Testing
+coverage/
+.nyc_output/
+
+# Additional credentials and secrets
+.aws/
+*-credentials.*
+*.pem
+*.key
+*.bak
+*-backup*
+
+# Additional runtime artifacts
+tmp/
+.cache/
+
+# Additional OS/editor files
+Thumbs.db
+.directory
+*.code-workspace
+
+# Local development overrides
+docker-compose.override.yml
+.env.*.local.php
+
+# Debug files
+.node-version
+.nvmrc
