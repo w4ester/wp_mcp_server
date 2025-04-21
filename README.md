@@ -6,9 +6,9 @@ A TypeScript-based Model Context Protocol (MCP) server that provides a standardi
 
 We've created documentation for different levels of experience:
 
-- 🌱 **[Beginner's Guide](docs/README-BEGINNER.md)**: If you're new to MCP servers and want to learn what this is all about
-- 🔧 **[Intermediate Guide](docs/README-INTERMEDIATE.md)**: If you have some technical knowledge and want to implement this in your projects
-- 🚀 **[Advanced Guide](docs/README-ADVANCED.md)**: If you're a developer looking to contribute or extend the functionality
+- **[Friendly Guide](docs/README-BEGINNER.md)**: If you're new to MCP servers and want to learn what this is all about
+- **[Working Guide](docs/README-INTERMEDIATE.md)**: If you have some technical knowledge and want to implement this in your projects
+- **[Let's GrOw! Guide](docs/README-ADVANCED.md)**: If you're a developer looking to contribute or extend the functionality
 
 ## Quick Start
 
@@ -31,14 +31,14 @@ npm start
 
 ## Features
 
-- 🔌 **Multi-site Support**: Manage multiple WordPress sites from a single server
-- 🔒 **Secure Authentication**: API key and WordPress application password support
-- 📝 **Full CRUD Operations**: Create, read, update, delete posts, pages, media, and more
-- 🤖 **AI-Ready**: Designed for integration with LLM applications
-- 🛠️ **Extensible**: Easy to add new WordPress features and tools
-- 📊 **Resource Management**: MCP resource exposure for WordPress entities
-- ⚡ **Performance Optimized**: Built-in caching and connection pooling
-- 🔍 **Monitoring**: Comprehensive metrics and logging
+- **Multi-site Support**: Manage multiple WordPress sites from a single server
+- **Secure Authentication**: API key and WordPress application password support
+- **Full CRUD Operations**: Create, read, update, delete posts, pages, media, and more
+- **AI-Ready**: Designed for integration with LLM applications
+- **Extensible**: Easy to add new WordPress features and tools
+- **Resource Management**: MCP resource exposure for WordPress entities
+- **Performance Optimized**: Built-in caching and connection pooling
+- **Monitoring**: Comprehensive metrics and logging
 
 ## Supported WordPress Features
 
@@ -58,10 +58,10 @@ npm start
 
 ## Documentation
 
-- 📚 [API Reference](docs/API.md)
-- 🔧 [Configuration Guide](docs/CONFIGURATION.md)
-- 🚀 [Deployment Guide](docs/DEPLOYMENT.md)
-- 🔍 [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [API Reference](docs/API.md)
+- [Configuration Guide](docs/CONFIGURATION.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
 
 ## Contributing
 
@@ -69,13 +69,10 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
-
 ## Support
 
-- 💬 [GitHub Discussions](https://github.com/yourusername/wordpress-mcp-server/discussions)
-- 🐛 [Issue Tracker](https://github.com/yourusername/wordpress-mcp-server/issues)
-- 📧 Email: support@example.com
+- [GitHub Discussions](https://github.com/w4ester/wordpress-mcp-server/discussions)
+- [Issue Tracker](https://github.com/w4ester/wordpress-mcp-server/issues)
 
 ## Acknowledgments
 

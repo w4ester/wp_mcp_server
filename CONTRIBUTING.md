@@ -1,6 +1,6 @@
 # Contributing to WordPress MCP Server
 
-First off, thank you for considering contributing to WordPress MCP Server! It's people like you that make this tool better for everyone.
+First off, thank you for considering contributing to WordPress MCP Server! Let's make this project even better together. This document outlines how you can contribute, the coding standards we follow, and the process for submitting changes.
 
 ## Code of Conduct
 
