@@ -19,7 +19,72 @@ export interface SecretsManager {
 }
 
 /**
- * Simple file-based secrets manager for development
+ * Environment variable-based secrets manager
+ */
+  /**
+ * Environment variable-based secrets manager
+ */
+export class EnvSecretsManager implements SecretsManager {
+  async getCredentials(siteId: string): Promise<{ username: string; applicationPassword: string }> {
+    try {
+      // Check for site-specific environment variables first
+      // Convert hyphens to underscores for environment variable compatibility
+      const normalizedSiteId = siteId.toUpperCase().replace(/-/g, '_');
+      const usernameEnvVar = `WP_${normalizedSiteId}_USERNAME`;
+      const passwordEnvVar = `WP_${normalizedSiteId}_PASSWORD`;
+      
+      if (process.env[usernameEnvVar] && process.env[passwordEnvVar]) {
+        logger.debug(`Using environment variables for site: ${siteId}`);
+        return {
+          username: process.env[usernameEnvVar]!,
+          applicationPassword: process.env[passwordEnvVar]!
+        };
+      }
+      
+      // Fall back to JSON in WP_SECRETS environment variable
+      const wpSecrets = process.env.WP_SECRETS;
+      if (!wpSecrets) {
+        throw new Error(`No credentials found for site: ${siteId} (WP_SECRETS not set)`);
+      }
+      
+      try {
+        const secrets = JSON.parse(wpSecrets);
+        
+        if (!secrets[siteId]) {
+          throw new Error(`Site "${siteId}" not found in WP_SECRETS JSON object`);
+        }
+        
+        logger.debug(`Using WP_SECRETS environment variable for site: ${siteId}`);
+        return {
+          username: secrets[siteId].username,
+          applicationPassword: secrets[siteId].applicationPassword
+        };
+      } catch (parseError: unknown) {
+        // Type guard to check if parseError is Error-like
+        const errorMessage = parseError instanceof Error 
+          ? parseError.message 
+          : String(parseError);
+        
+        throw new Error(`Failed to parse WP_SECRETS as JSON: ${errorMessage}`);
+      }
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : String(error);
+      
+      logger.error('Failed to load credentials from environment', { error, siteId });
+      throw new Error(`Failed to load credentials for site: ${siteId}: ${errorMessage}`);
+    }
+  }
+  
+  async storeCredentials(siteId: string, credentials: { username: string; applicationPassword: string }): Promise<void> {
+    // Environment variables can't be modified at runtime
+    throw new Error('EnvSecretsManager does not support storing credentials');
+  }
+}
+
+/**
+ * Simple file-based secrets manager for development REMOVE for Production
  */
 export class FileSecretsManager implements SecretsManager {
   constructor(private readonly secretsPath: string) {}

@@ -102,34 +102,82 @@ export class ApiKeyManager {
   /**
    * Load API keys from the configured source
    */
-  private async loadKeys(): Promise<void> {
-    if (this.loading) {
-      return;
-    }
-    
-    this.loading = true;
-    
-    try {
-      if (this.source === 'file') {
-        await this.loadKeysFromFile();
-      } else if (this.source === 'aws') {
-        // Implementation for AWS Secrets Manager would go here
-        logger.warn('AWS Secrets Manager not implemented yet');
-      } else {
-        logger.error(`Unknown API key source: ${this.source}`);
-      }
-      
-      this.lastLoaded = Date.now();
-    } catch (error) {
-      logger.error('Failed to load API keys', { error });
-    } finally {
-      this.loading = false;
-    }
+// File: src/middleware/auth.ts
+// Around line ~89:
+
+private async loadKeys(): Promise<void> {
+  if (this.loading) {
+    return;
   }
+  
+  this.loading = true;
+  
+  try {
+    if (this.source === 'file') {
+      await this.loadKeysFromFile();
+    } else if (this.source === 'env') {
+      this.loadKeysFromEnv();
+    } else if (this.source === 'aws') {
+      // Implementation for AWS Secrets Manager would go here
+      logger.warn('AWS Secrets Manager not implemented yet');
+    } else {
+      logger.error(`Unknown API key source: ${this.source}`);
+    }
+    
+    this.lastLoaded = Date.now();
+  } catch (error) {
+    logger.error('Failed to load API keys', { error });
+  } finally {
+    this.loading = false;
+  }
+}
   
   /**
    * Load API keys from a file
    */
+  // Add this new method to load keys from environment variables
+private loadKeysFromEnv(): void {
+  try {
+    // First try the JSON format for multiple keys
+    const apiKeys = process.env.API_KEYS;
+    if (apiKeys) {
+      try {
+        const storage = JSON.parse(apiKeys) as ApiKeyStorage;
+        this.keys = storage.keys || [];
+        logger.info(`Loaded ${this.keys.length} API keys from environment variable`);
+        return;
+      } catch (error) {
+        logger.warn('Failed to parse API_KEYS as JSON, trying single key format');
+      }
+    }
+    
+    // Try single key format
+    const singleKey = process.env.API_KEY;
+    if (singleKey) {
+      this.keys = [{
+        key: singleKey,
+        name: 'Environment API Key',
+        clientId: process.env.API_CLIENT_ID || 'default-client',
+        permissions: (process.env.API_PERMISSIONS || 'read,write').split(','),
+        authorizedSites: (process.env.API_AUTHORIZED_SITES || '*').split(','),
+        active: true,
+        created: new Date().toISOString(),
+        expires: null
+      }];
+      logger.info('Loaded single API key from environment variable');
+      return;
+    }
+    
+    // No keys found
+    logger.warn('No API keys found in environment variables');
+    this.keys = [];
+  } catch (error) {
+    logger.error('Failed to load API keys from environment', { error });
+    throw error;
+  }
+}
+
+/*REMOVE IN PRODUCTION*/
   private async loadKeysFromFile(): Promise<void> {
     try {
       const data = await fs.readFile(this.path, 'utf8');
@@ -143,8 +191,8 @@ export class ApiKeyManager {
       throw error;
     }
   }
-  
-  /**
+
+/**
    * Reload keys if they haven't been loaded recently
    */
   private reloadIfNeeded(): void {
