@@ -1,0 +1,53 @@
+{
+  "environment": "production",
+  "server": {
+    "port": 80,
+    "host": "0.0.0.0",
+    "trustProxy": true
+  },
+  "wordpress": {
+    "sitesConfigPath": "/etc/wordpress-mcp/wp-sites.json",
+    "secretsPath": "/etc/wordpress-mcp/wp-secrets.json",
+    "apiTimeout": 15000
+  },
+  "security": {
+    "rateLimit": {
+      "windowMs": 60000,
+      "max": 200,
+      "standardHeaders": true
+    },
+    "apiKeys": {
+      "source": "aws",
+      "secretName": "wordpress-mcp/api-keys"
+    },
+    "cors": {
+      "origin": [
+        "https://*.example.com",
+        "https://*.amazonaws.com"
+      ],
+      "methods": ["GET", "POST"],
+      "allowedHeaders": ["Content-Type", "X-API-Key", "X-MCP-Key"]
+    }
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "outputs": ["console", "cloudwatch"]
+  },
+  "cloudwatch": {
+    "region": "us-east-1",
+    "logGroup": "/wordpress-mcp/logs",
+    "logStream": "mcp-server"
+  },
+  "mcp": {
+    "name": "WordPress MCP Server",
+    "version": "1.0.0",
+    "transport": "http"
+  },
+  "aws": {
+    "region": "us-east-1",
+    "credentials": {
+      "type": "instance-profile"
+    }
+  }
+}

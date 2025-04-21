@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <style>
+    text { font-family: Arial, sans-serif; font-size: 14px; }
+    .box { fill: #f8f9fa; stroke: #333; stroke-width: 2; }
+    .client { fill: #e3f2fd; }
+    .server { fill: #e8f5e9; }
+    .wordpress { fill: #fff3e0; }
+    .connector { fill: none; stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+    .label { font-size: 12px; font-weight: bold; }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Client Layer -->
+  <rect class="box client" x="50" y="50" width="700" height="80" rx="10"/>
+  <text x="400" y="90" text-anchor="middle" class="label">AI Applications / MCP Clients</text>
+  
+  <!-- JSON-RPC Layer -->
+  <rect class="box" x="200" y="180" width="400" height="60" rx="10"/>
+  <text x="400" y="215" text-anchor="middle">JSON-RPC 2.0 Handler + MCP Protocol</text>
+  
+  <!-- Server Components -->
+  <rect class="box server" x="50" y="290" width="700" height="120" rx="10"/>
+  <text x="400" y="320" text-anchor="middle" class="label">WordPress MCP Server</text>
+  
+  <!-- Tools -->
+  <rect class="box" x="70" y="340" width="80" height="50" rx="5"/>
+  <text x="110" y="370" text-anchor="middle">Posts</text>
+  
+  <rect class="box" x="170" y="340" width="80" height="50" rx="5"/>
+  <text x="210" y="370" text-anchor="middle">Pages</text>
+  
+  <rect class="box" x="270" y="340" width="80" height="50" rx="5"/>
+  <text x="310" y="370" text-anchor="middle">Media</text>
+  
+  <rect class="box" x="370" y="340" width="80" height="50" rx="5"/>
+  <text x="410" y="370" text-anchor="middle">Users</text>
+  
+  <rect class="box" x="470" y="340" width="80" height="50" rx="5"/>
+  <text x="510" y="370" text-anchor="middle">Categories</text>
+  
+  <rect class="box" x="570" y="340" width="80" height="50" rx="5"/>
+  <text x="610" y="370" text-anchor="middle">Plugins</text>
+  
+  <rect class="box" x="670" y="340" width="80" height="50" rx="5"/>
+  <text x="710" y="370" text-anchor="middle">Themes</text>
+  
+  <!-- WordPress Sites -->
+  <rect class="box wordpress" x="50" y="460" width="200" height="80" rx="10"/>
+  <text x="150" y="490" text-anchor="middle" class="label">WordPress Site 1</text>
+  <text x="150" y="510" text-anchor="middle" font-size="12">REST API</text>
+  
+  <rect class="box wordpress" x="300" y="460" width="200" height="80" rx="10"/>
+  <text x="400" y="490" text-anchor="middle" class="label">WordPress Site 2</text>
+  <text x="400" y="510" text-anchor="middle" font-size="12">REST API</text>
+  
+  <rect class="box wordpress" x="550" y="460" width="200" height="80" rx="10"/>
+  <text x="650" y="490" text-anchor="middle" class="label">WordPress Site N</text>
+  <text x="650" y="510" text-anchor="middle" font-size="12">REST API</text>
+  
+  <!-- Connectors -->
+  <path class="connector" d="M400,130 L400,180"/>
+  <path class="connector" d="M400,240 L400,290"/>
+  <path class="connector" d="M400,410 L150,460"/>
+  <path class="connector" d="M400,410 L400,460"/>
+  <path class="connector" d="M400,410 L650,460"/>
+  
+  <!-- Protocol Labels -->
+  <text x="450" y="160" font-size="12">HTTP/WebSocket</text>
+  <text x="450" y="265" font-size="12">Tool Registration</text>
+  <text x="250" y="435" font-size="12">WordPress REST API</text>
+</svg>

@@ -1,0 +1,39 @@
+{
+  "environment": "development",
+  "server": {
+    "port": 3000,
+    "host": "0.0.0.0",
+    "trustProxy": false
+  },
+  "wordpress": {
+    "sitesConfigPath": "./config/wp-sites.json",
+    "secretsPath": "./config/wp-secrets.json",
+    "apiTimeout": 10000
+  },
+  "security": {
+    "rateLimit": {
+      "windowMs": 60000,
+      "max": 100,
+      "standardHeaders": true
+    },
+    "apiKeys": {
+      "source": "file",
+      "path": "./config/api-keys.json"
+    },
+    "cors": {
+      "origin": "*",
+      "methods": ["GET", "POST"],
+      "allowedHeaders": ["Content-Type", "X-API-Key", "X-MCP-Key"]
+    }
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "outputs": ["console"]
+  },
+  "mcp": {
+    "name": "WordPress MCP Server",
+    "version": "1.0.0",
+    "transport": "http"
+  }
+}

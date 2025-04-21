@@ -1,0 +1,24 @@
+{
+  "sites": {
+    "main": {
+      "baseUrl": "https://example.com",
+      "maxConcurrent": 5,
+      "timeout": 10000,
+      "cacheEnabled": true,
+      "cacheTimeout": 300000
+    },
+    "blog": {
+      "baseUrl": "https://blog.example.com",
+      "maxConcurrent": 3,
+      "timeout": 10000,
+      "cacheEnabled": true,
+      "cacheTimeout": 300000
+    },
+    "staging": {
+      "baseUrl": "https://staging.example.com",
+      "maxConcurrent": 2,
+      "timeout": 15000,
+      "cacheEnabled": false
+    }
+  }
+}

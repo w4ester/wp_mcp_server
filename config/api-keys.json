@@ -1,0 +1,34 @@
+{
+  "keys": [
+    {
+      "key": "dev-12345-abcde-67890-fghij",
+      "name": "Development Key",
+      "clientId": "dev-client",
+      "permissions": ["admin"],
+      "authorizedSites": ["main", "blog", "staging"],
+      "active": true,
+      "created": "2025-01-01T00:00:00Z",
+      "expires": null
+    },
+    {
+      "key": "web-12345-abcde-67890-fghij",
+      "name": "Web Client Key",
+      "clientId": "web-client",
+      "permissions": ["content_editor"],
+      "authorizedSites": ["main", "blog"],
+      "active": true,
+      "created": "2025-01-01T00:00:00Z",
+      "expires": "2026-01-01T00:00:00Z"
+    },
+    {
+      "key": "mobile-12345-abcde-67890-fghij",
+      "name": "Mobile App Key",
+      "clientId": "mobile-app",
+      "permissions": ["content_editor"],
+      "authorizedSites": ["main", "blog"],
+      "active": true,
+      "created": "2025-01-01T00:00:00Z",
+      "expires": "2026-01-01T00:00:00Z"
+    }
+  ]
+}
