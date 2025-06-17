@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/w4ester-wp-mcp-server-badge.png)](https://mseep.ai/app/w4ester-wp-mcp-server)
+
 # WordPress MCP Server
 
 A TypeScript-based Model Context Protocol (MCP) server that provides a standardized interface for AI systems to interact with WordPress sites. This server enables secure, programmatic access to WordPress functionality through JSON-RPC 2.0.
